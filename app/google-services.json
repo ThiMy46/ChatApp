@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "613297165933",
+    "firebase_url": "https://appchat-d8ddb.firebaseio.com",
+    "project_id": "appchat-d8ddb",
+    "storage_bucket": "appchat-d8ddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613297165933:android:c944342b6652fc43",
+        "android_client_info": {
+          "package_name": "com.appchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613297165933-ki7g6vo10278f6dru9h4f6qq6ogmvkip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0ur-RDolD0pCpZA0hSd8cb4sFtdnQ4r4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
