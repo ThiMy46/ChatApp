@@ -6,10 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SingUp">
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
+        android:cropToPadding="false"
         android:src="@drawable/logo_zalo_1" />
 
     <!--  Name Label -->

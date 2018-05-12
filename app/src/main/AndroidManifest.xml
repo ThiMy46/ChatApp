@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-        <activity android:name=".SingUp"></activity>
+        <activity android:name=".SingUp" />
+        <activity android:name=".MessageList"></activity>
     </application>
 
 </manifest>
