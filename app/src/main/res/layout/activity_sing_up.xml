@@ -9,39 +9,51 @@
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
         android:cropToPadding="false"
         android:src="@drawable/logo_zalo_1" />
 
     <!--  Name Label -->
-    <EditText android:id="@+id/input_name"
+    <EditText
+        android:id="@+id/input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapWords"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:hint="Name" />
+        android:hint="Tên"
+        android:inputType="textCapWords" />
 
     <!-- Email Label -->
-    <EditText android:id="@+id/input_email"
+    <EditText
+        android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:hint="Email" />
+        android:hint="Email or SĐT "
+        android:inputType="textEmailAddress" />
 
     <!-- Password Label -->
-    <EditText android:id="@+id/input_password"
+    <EditText
+        android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:hint="Password"/>
+        android:hint="Mật khẩu"
+        android:inputType="textPassword" />
 
     <!-- Signup Button -->
+    <EditText
+        android:id="@+id/input_password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:hint="Nhập lại mật khẩu"
+        android:inputType="textPassword" />
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
@@ -77,14 +89,15 @@
         android:layout_marginTop="24dp"
         android:background="@color/colorButton"
         android:padding="12dp"
-        android:text="Create Account"
+        android:text="Tạo Tài Khoản"
         android:textColor="@color/colorTextButton" />
 
-    <TextView android:id="@+id/link_login"
+    <TextView
+        android:id="@+id/link_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Already a member? Login"
         android:gravity="center"
-        android:textSize="16dip"/>
+        android:text="Bạn đã có tài khoản? Đăng Nhập tại đây"
+        android:textSize="16dip" />
 </LinearLayout>

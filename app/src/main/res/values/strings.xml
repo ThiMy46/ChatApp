@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ChatApp</string>
 
-    <string name="main_name">Danh Sách Tin Nhắn</string>
+    <string name="main_name">Danh Sách Bạn Bè</string>
     <string name="login_name">Đăng Nhập</string>
     <string name="singup_name">Đăng Ký</string>
     <string name="chat_name">Tin Nhắn</string>

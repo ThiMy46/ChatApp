@@ -27,16 +27,16 @@
         android:divider="@null" />-->
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
             android:id="@+id/item_friend"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@+id/imageButton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/circle" />
 
@@ -66,6 +66,69 @@
                 android:text="12/05/2018"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/item_friend"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@android:drawable/presence_online" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_friend1"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_below="@+id/item_friend"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@+id/imageButton1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/circle" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Đào Mỹ"
+                app:layout_constraintStart_toEndOf="@+id/imageView1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Xin chào!!!!"
+                app:layout_constraintStart_toEndOf="@+id/imageView1"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+            <TextView
+                android:id="@+id/textView311"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="12/05/2018"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@android:drawable/presence_invisible" />
         </android.support.constraint.ConstraintLayout>
 
 
@@ -181,7 +244,7 @@
 
             </LinearLayout>
 
-            <!-- Item Info App-->
+            <!--&lt;!&ndash; Item Info App&ndash;&gt;
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -206,7 +269,7 @@
 
             </LinearLayout>
 
-            <!-- Item Help -->
+            &lt;!&ndash; Item Help &ndash;&gt;
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -228,7 +291,7 @@
                     android:layout_marginLeft="@dimen/padding_extra_extra_large"
                     android:text="@string/menu_item_help" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!-- Item LogOut -->
 

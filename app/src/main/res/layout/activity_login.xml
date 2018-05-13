@@ -15,22 +15,24 @@
 
 
     <!-- Email Label -->
-    <EditText android:id="@+id/input_email"
+    <EditText
+        android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:hint="Email" />
+        android:hint="Email or SĐT"
+        android:inputType="textEmailAddress" />
 
     <!-- Password Label -->
-    <EditText android:id="@+id/input_password"
+    <EditText
+        android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:hint="Password"/>
+        android:hint="Mật Khẩu"
+        android:inputType="textPassword" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_login"
@@ -41,16 +43,18 @@
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/colorButton"
+        android:onClick="LoginClick"
         android:padding="12dp"
-        android:text="Login"
-        android:textColor="@color/colorTextButton"
-        android:onClick="LoginClick" />
+        android:text="Đăng Nhập"
+        android:textColor="@color/colorTextButton" />
 
     <TextView android:id="@+id/link_signup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="No account yet? Create one"
+        android:text="Bạn chưa có tài khoản? Tạo tại đây"
         android:gravity="center"
-        android:textSize="16dip"/>
+        android:textSize="16dip">
+    </TextView>
+
 </LinearLayout>
