@@ -10,4 +10,6 @@ public class SingUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
     }
+
+    //Đăng ký hoàn tất quay về trang LogIn
 }

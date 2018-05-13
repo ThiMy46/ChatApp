@@ -12,16 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SingUp" />
-        <activity android:name=".MessageList"></activity>
+        <activity android:name=".MessageList" />
+        <activity android:name=".Info_Account" />
+        <activity android:name=".UpdateInfoAccount"></activity>
     </application>
 
 </manifest>
