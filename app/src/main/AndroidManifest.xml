@@ -23,7 +23,8 @@
         <activity android:name=".SingUp" />
         <activity android:name=".MessageList" />
         <activity android:name=".Info_Account" />
-        <activity android:name=".UpdateInfoAccount"></activity>
+        <activity android:name=".UpdateInfoAccount" />
+        <activity android:name=".ChangePassword"></activity>
     </application>
 
 </manifest>
