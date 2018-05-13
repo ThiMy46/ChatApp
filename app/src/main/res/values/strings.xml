@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">ChatApp</string>
 
+    <string name="main_name">Danh Sách Tin Nhắn</string>
+    <string name="login_name">Đăng Nhập</string>
+    <string name="singup_name">Đăng Ký</string>
+    <string name="chat_name">Tin Nhắn</string>
+    <string name="update_Info_name">Thay Đổi Thông Tin Cá Nhân</string>
+    <string name="password_name">Thay Đổi Mật Khẩu</string>
+    <string name="Info_name">Thông Tin Cá Nhân</string>
     <!-- Các hành động -->
     <string name="common_action_close">Đóng</string>
     <string name="common_action_save">Lưu</string>
