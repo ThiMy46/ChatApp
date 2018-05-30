@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"
-            android:text="John Doe"
+            android:text="Lương Mỹ"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/image_message_profile"
             app:layout_constraintTop_toTopOf="parent" />
