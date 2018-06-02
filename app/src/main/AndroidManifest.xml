@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" android:label="@string/main_name"/>
-        <activity android:name=".SingUp" android:label="@string/singup_name"/>
+        <activity android:name=".Register" android:label="@string/singup_name">
+        </activity>
         <activity android:name=".MessageList" android:label="@string/chat_name" >
         </activity>
         <activity android:name=".Info_Account" android:label="@string/Info_name"/>

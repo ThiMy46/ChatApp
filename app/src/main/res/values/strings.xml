@@ -31,4 +31,8 @@
     <string name="note_detail_category">Chủ Đề</string>
     <string name="note_detail_other_information">Thông Tin Khác</string>
     <string name="note_detail_add_note_hint">Ghi Chú - Có Thể Thêm Vào Sau</string>
+
+    <!--Sing Up-->
+    <string name="move_login">Bạn đã có tài khoản? Đăng nhập tại đây</string>
+    <string name="move_register">Bạn chưa có tài khoản? Đăng ký tại đây</string>
 </resources>

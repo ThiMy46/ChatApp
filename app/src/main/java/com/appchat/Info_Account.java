@@ -10,7 +10,7 @@ public class Info_Account extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info__account);
+        setContentView(R.layout.activity_info_account);
     }
 
     public void UpdateInfoClick(View view) {
