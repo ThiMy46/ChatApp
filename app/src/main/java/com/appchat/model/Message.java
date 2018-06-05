@@ -1,25 +1,27 @@
 package com.appchat.model;
 
-public class Message {
-    String name;
-    String message;
-    String time;
+import java.util.Date;
 
-    public Message(String name, String message, String time) {
-        this.name = name;
+public class Message {
+    String usersID;
+    String message;
+    long timestamp;
+
+    public Message(String usersID, String message, long timestamp) {
+        this.usersID = usersID;
         this.message = message;
-        this.time = time;
+        this.timestamp = timestamp;
     }
 
     public Message() {
     }
 
-    public String getName() {
-        return name;
+    public String getUsersID() {
+        return usersID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsersID(String usersID) {
+        this.usersID = usersID;
     }
 
     public String getMessage() {
@@ -30,11 +32,11 @@ public class Message {
         this.message = message;
     }
 
-    public String getTime() {
-        return time;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
