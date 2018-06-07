@@ -12,21 +12,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login" android:label="@string/login_name">
+        <activity
+            android:name=".Login"
+            android:label="@string/login_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="@string/main_name"/>
-        <activity android:name=".Register" android:label="@string/singup_name">
-        </activity>
-        <activity android:name=".MessageList" android:label="@string/chat_name" >
-        </activity>
-        <activity android:name=".Info_Account" android:label="@string/Info_name"/>
-        <activity android:name=".UpdateInfoAccount" android:label="@string/update_Info_name"/>
-        <activity android:name=".ChangePassword" android:label="@string/password_name"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_name" />
+        <activity
+            android:name=".Register"
+            android:label="@string/singup_name" />
+        <activity
+            android:name=".MessageList"
+            android:label="@string/chat_name" />
+        <activity
+            android:name=".Info_Account"
+            android:label="@string/Info_name" />
+        <activity
+            android:name=".UpdateInfoAccount"
+            android:label="@string/update_Info_name" />
+        <activity
+            android:name=".ChangePassword"
+            android:label="@string/password_name" />
+        <activity android:name=".ListFriend" />
+        <activity android:name=".SearchUser" />
+        <activity android:name=".InfoUserSearch"></activity>
     </application>
 
 </manifest>

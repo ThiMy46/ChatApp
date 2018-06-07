@@ -14,3 +14,9 @@ Load danh sách tạm nhóm chát mà user hiện tại có chat chưa kết n�
 Load Danh sách nhóm chát mà user hiện tại có chat cùng ngày 05/06/2018
 
 Ghép bài Login, Register từ bạn Mỹ Mỹ ngày 05/06/2018
+
+chưa hiển thị tên friend của group chat tươn ứng
+
+Ngày 07/06/2018 hoàn thành basic các chức năng(đăng nhập, đăng xuất, thông tin cá nhân(xem, chỉnh sửa)
+, chat với một người(thêm người đó vào danh sách<fix chức năng này mới được, sao lại muốn kết bạn là kết bạn>))
+

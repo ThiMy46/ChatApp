@@ -29,9 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity{
 
-    EditText mEditEmail;
-    EditText mEditPassword;
-
+    String urlAvatarDefault="https://firebasestorage.googleapis.com/v0/b/appchat-d8ddb.appspot.com/o/default_image.png?alt=media&token=104d33cd-7d16-434b-a577-d18bec1d1f8c";
     TextView moveLogin;
     EditText mEditName, mEditNumber, mEditPass, mEditAgainPass;
     RadioGroup radioGroup;
@@ -102,10 +100,12 @@ public class Register extends AppCompatActivity{
 
                             //
                             FirebaseUser user = mAuth.getCurrentUser ();
-                            UserInformation info = new UserInformation (Name, Sex, User);
+                            UserInformation info = new UserInformation (Name, Sex, User, "none",urlAvatarDefault);
                             userInformation (user, info);
-
-                            Toast.makeText (Register.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show ();
+                            //
+                            Toast.makeText (Register.this, "Đăng ký thành công! \nMời bạn đăng nhập lại", Toast.LENGTH_SHORT).show ();
+                            Intent intent=new Intent(Register.this,Login.class);
+                            startActivity(intent);
                         }else
                             Toast.makeText (Register.this, "Lỗi!", Toast.LENGTH_SHORT).show ();
 
@@ -117,7 +117,6 @@ public class Register extends AppCompatActivity{
     private void userInformation(FirebaseUser user, UserInformation info){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance ().getReference ();
         databaseReference.child("users").child (user.getUid ()).setValue (info);
-        Toast.makeText (this, "Lưu thông tin thành công!", Toast.LENGTH_SHORT).show ();
     }
 
 

@@ -12,16 +12,16 @@
         android:id="@+id/imgHinh"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="@+id/imgState"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvNameHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Lương Mỹ"
+        android:text=" "
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imgHinh"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,9 +30,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Hello, i'm &quot;Pham Luong My&quot;"
+        android:text="Hello"
         app:layout_constraintStart_toEndOf="@+id/imgHinh"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNameHeader" />
 
     <TextView
         android:id="@+id/tvTime"
@@ -42,13 +42,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgState"
-        android:layout_width="25dp"
-        android:layout_height="20dp"
-        android:layout_alignTop="@+id/item_friend"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/presence_online" />
     <!--app:srcCompat="@android:drawable/presence_invisible"-->
 </android.support.constraint.ConstraintLayout>

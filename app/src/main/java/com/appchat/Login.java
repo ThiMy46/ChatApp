@@ -1,5 +1,6 @@
 package com.appchat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-
+    ProgressDialog myprogress;
     TextView moveRegister;
     private FirebaseAuth mAuth;
     EditText Email;
@@ -57,6 +58,7 @@ public class Login extends AppCompatActivity {
 
     //Login vào trang chủ
     public void LoginClick(View view) {
+        myprogress=ProgressDialog.show(Login.this,"Đăng Nhập","Đợi tí...");
         //Get Text User & Pass
         String user = Email.getText ().toString ();
         String pass = Password.getText ().toString ();
@@ -69,6 +71,7 @@ public class Login extends AppCompatActivity {
 
                         if ( task.isSuccessful ())
                         {
+
                             Toast.makeText (Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show ();
                             Intent main_intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(main_intent);

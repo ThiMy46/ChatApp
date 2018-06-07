@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.appchat.MessageList;
 import com.appchat.R;
 import com.appchat.model.Message;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +24,6 @@ import java.util.List;
 public class CustomRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Message> listMessage = new ArrayList<>();
-    private int type=1;
 
     private final String AuthID=FirebaseAuth.getInstance().getCurrentUser().getUid();
 

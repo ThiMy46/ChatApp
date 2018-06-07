@@ -6,10 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".UpdateInfoAccount">
 
+    <EditText
+        android:id="@+id/editSDT"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Số điện thoại"
+        android:inputType="textPersonName|number"
+        android:text="000000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/avatar"
+        android:layout_width="157dp"
+        android:layout_height="161dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,19 +33,19 @@
         app:srcCompat="@drawable/avatar_circle" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
         android:text="Nguyen Van"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -41,48 +57,50 @@
         android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/colorButton"
         android:text="Cập nhập dữ liệu"
         android:textColor="@color/colorTextButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAvatar" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
+        android:id="@+id/btnAvatar"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/camera_next"
         app:layout_constraintEnd_toStartOf="@+id/divider"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/te"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:text="thay đổi avatar"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAvatar"
+        app:layout_constraintStart_toEndOf="@+id/btnAvatar"
+        app:layout_constraintTop_toTopOf="@+id/btnAvatar"
+        app:layout_constraintVertical_bias="0.666" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -94,11 +112,11 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/editName">
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/rNam"
             android:layout_width="84dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -106,7 +124,7 @@
             android:text="Nam" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/rNu"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

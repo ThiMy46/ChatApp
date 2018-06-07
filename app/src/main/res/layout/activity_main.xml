@@ -86,12 +86,37 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/activity_vertical_margin"
                     android:text="Account name"
+                    android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             </LinearLayout>
 
-            <!-- Item Info Account -->
+            <!--Danh sách bạn bè-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_item_height"
+                android:layout_marginTop="@dimen/padding_tiny_plus_one"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:onClick="listFriendClick">
 
+                <ImageView
+                    android:layout_width="@dimen/navigation_item_icon_size"
+                    android:layout_height="@dimen/navigation_item_icon_size"
+                    android:src="@android:drawable/ic_menu_share" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_extra_extra_large"
+                    android:text="@string/menu_item_list_friend" />
+
+            </LinearLayout>
+
+            <!-- Item Info Account -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/navigation_item_height"

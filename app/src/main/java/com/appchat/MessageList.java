@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +37,11 @@ public class MessageList extends AppCompatActivity {
 
     private EditText editMessage;
     private Button btnSend;
+    public TextView tvNameHearder;
     private List<Message> listMessage= new ArrayList<>();;
     CustomRecyclerAdapter adapter;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +51,17 @@ public class MessageList extends AppCompatActivity {
         //get UserID đăng nhập hiện tại
         mAuth = FirebaseAuth.getInstance();
         AuthID=mAuth.getCurrentUser().getUid();
+
         //get GroupID từ Main
-        Intent intent = getIntent();
+        intent = getIntent();
         groupchats = intent.getStringExtra("GroupID");
 
         //ánh xạ các phần tử
         mRecyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         editMessage=(EditText)findViewById(R.id.edittext_chatbox);
+        tvNameHearder=(TextView)findViewById(R.id.tvNameHeader);////////////////////lấy usename truyền sang
         //btnSend=(Button)findViewById(R.id.button_chatbox_send);
+        tvNameHearder.setText(intent.getStringExtra("UserName"));
 
         // If the size of views will not change as the data changes.
         mRecyclerView.setHasFixedSize(true);
@@ -71,7 +78,25 @@ public class MessageList extends AppCompatActivity {
         //Lấy Data từ firebase và bắt các thay đổi dữ liệu của data
         getMessageFromFirebaseUser();
         //btnSend.setOnClickListener(this);
+        //add button Back
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(intent.getStringExtra("class").equals("list"))
+        {
+            Intent intent1=new Intent(MessageList.this,ListFriend.class);
+            startActivity(intent1);
+        }
+        else
+        {
+            Intent intent=new Intent(MessageList.this,MainActivity.class);
+            startActivity(intent);
+        }
+        finish();
+        return super.onOptionsItemSelected(null);
     }
     /*onClick of button Send*/
     public void AdđItem(View view) {

@@ -1,7 +1,8 @@
 <resources>
+
     <string name="app_name">ChatApp</string>
 
-    <string name="main_name">Danh Sách Bạn Bè</string>
+    <string name="main_name">Danh Sách Tin Nhắn</string>
     <string name="login_name">Đăng Nhập</string>
     <string name="singup_name">Đăng Ký</string>
     <string name="chat_name">Tin Nhắn</string>
@@ -35,4 +36,7 @@
     <!--Sing Up-->
     <string name="move_login">Bạn đã có tài khoản? Đăng nhập tại đây</string>
     <string name="move_register">Bạn chưa có tài khoản? Đăng ký tại đây</string>
+    <string name="menu_item_list_friend">Danh sách bạn bè</string>
+
+
 </resources>

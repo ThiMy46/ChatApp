@@ -1,10 +1,12 @@
 package com.appchat;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,17 +15,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appchat.adapter.CusReListFriendAdapter;
+import com.appchat.adapter.CustomRecyclerMainAdapter;
 import com.appchat.model.Chats;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,26 +39,32 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-
     private String AuthID="";
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    private ImageView mAvatar;
+    private TextView mTextName;
 
     private RecyclerView mRVlistFriendsChat;
     //lưu list friend chat
-    private List<Chats> listChats=new ArrayList<>();
+    private List<Chats> listChats;
+    public static List<String> friendID;
     //lưu lại groupID của mỗi dòng list friend chat
     Map<Integer,String> mapUserGroup=new HashMap<>();
 
-    private CusReListFriendAdapter mAdapter;
+    private CustomRecyclerMainAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     int i=0;
+    //Hiện hộp thoại khi đăng xuất
+    AlertDialog.Builder myDialog;
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listChats=new ArrayList<>();
+        friendID=new ArrayList<>();
 
         //toggle navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer);
@@ -67,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         AuthID=mAuth.getCurrentUser().getUid();
         //ánh xạ
         mRVlistFriendsChat=(RecyclerView) findViewById(R.id.list_chat_friend);
+        mAvatar=(ImageView)findViewById(R.id.activity_main_imv_avatar);
+        mTextName=(TextView)findViewById(R.id.activity_main_tv_user_name);
 
         // If the size of views will not change as the data changes.
         mRVlistFriendsChat.setHasFixedSize(true);
@@ -75,38 +88,48 @@ public class MainActivity extends AppCompatActivity {
         mRVlistFriendsChat.setLayoutManager(layoutManager);
 
         //set adapter
-        mAdapter=new CusReListFriendAdapter(listChats);
+        mAdapter=new CustomRecyclerMainAdapter(listChats);
 
         mRVlistFriendsChat.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         //bắt sự kiện click trên mỗi item trên list
-        mAdapter.setOnItemClickedListener(new CusReListFriendAdapter.OnItemClickedListener() {
+        mAdapter.setOnItemClickedListener(new CustomRecyclerMainAdapter.OnItemClickedListener() {
             @Override
-            public void onItemClick(String index) {
-                Toast.makeText(MainActivity.this, index, Toast.LENGTH_SHORT).show();//thay đổi lấy thông tin group chat qua list chats
+            public void onItemClick(String username, int index) {
                 Intent message_intent = new Intent(getApplicationContext(), MessageList.class);
-                //gửi thông tin groupID sang Message
-                message_intent.putExtra("GroupID",mapUserGroup.get(Integer.parseInt(index)));
+                //gửi thông tin groupID sang Message thông qua vị trí click hiện tại
+                message_intent.putExtra("GroupID",mapUserGroup.get(index));
+                message_intent.putExtra("class","main");
+                message_intent.putExtra("UserName",username);
                 startActivity(message_intent);
+                finish();
                 //Log.d("Group",mapUserGroup.get(Integer.parseInt(index)));
             }
         });
         getGroupOfUser();
+
+        //get Avatar & username
+        GetAvatarAndName(AuthID);
 
     }
     //lấy và add vào list group những group mà user tham gia\
     public void getGroupOfUser(){
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
         databaseReference.child("members").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //KEY: group1
+                //lấy tất cả key con
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     String key = child.getKey();
+                    //kiểm tra nếu key là UserID hiện tại
                     if(key.equals(AuthID))
                     {
+                        //add thông tin group vào list
                         getGroupChatFromFirebaseUser(dataSnapshot.getKey());
+                        getInfoFriendChat(dataSnapshot.getKey());
+                        //lưu lại vị trí và name group tương ứng
                         mapUserGroup.put(i++,dataSnapshot.getKey());
                     }
                 }
@@ -138,16 +161,52 @@ public class MainActivity extends AppCompatActivity {
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        //lấy thông tin về tin nhắn cuối cùng
         databaseReference.child("chats").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //for(String group : groups) {
+                //lấy thông tin lastmessage và time của group tương tứng
                     if (dataSnapshot.getKey().equals(group)) {
                         Chats model = dataSnapshot.getValue(Chats.class);
                         listChats.add(model);
                     }
-                //}
                 mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("Error","Unable to get last Chat: " + databaseError.getMessage());
+            }
+        });
+
+    }
+    public void getInfoFriendChat(final String group)
+    {
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //lấy thông tin về tài khoản bạn bè
+        databaseReference.child("members/"+group).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //lấy thông tin user từ group
+                if (!dataSnapshot.getKey().equals(AuthID)) {
+                    friendID.add(dataSnapshot.getKey());
+                }
             }
 
             @Override
@@ -172,6 +231,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //
+    //Lấy Value Avatar và UserName của UserID
+    public void GetAvatarAndName(String ID){
+        FirebaseDatabase.getInstance().getReference().child("users/"+ID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mTextName.setText( dataSnapshot.child("name").getValue(String.class));
+                Picasso.with(getBaseContext()).load(dataSnapshot.child("urlAvatar").getValue(String.class).toString ()).into(mAvatar);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     //toggle disday menu left
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -207,6 +282,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.search:
                 Toast.makeText(this, "Search button selected", Toast.LENGTH_SHORT).show();
+                Intent search_intent = new Intent(getApplicationContext(), SearchUser.class);
+                startActivity(search_intent);
+                finish();
                 return true;
             case R.id.about:
                 Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
@@ -227,15 +305,35 @@ public class MainActivity extends AppCompatActivity {
 
     //Đăng xuất tài khoản khỏi hệ thống, quay về đăng nhập
     public void LogOut(View view) {
-        Intent logout_intent = new Intent(getApplicationContext(), Login.class);
-        startActivity(logout_intent);
+        myDialog = new AlertDialog.Builder(this);
+        myDialog.setTitle("App Chat");
+        myDialog.setMessage("Bạn có chắc muốn đăng xuất???");
+        myDialog.setIcon(R.mipmap.ic_launcher);
+        myDialog.setPositiveButton("Đăng Xuất",new DialogInterface.OnClickListener(){   //setPositiveButton, nút hiển thị vị trí đầu bên trái
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                FirebaseAuth.getInstance().signOut();
+                Intent logout_intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(logout_intent);
+                MainActivity.this.finish(); // đóng Activity => Thoát hoàn toàn ứng dụng
+                dialog.cancel(); // đóng Dialog, Activity tiếp tục hoạt động
+            }
+        });
+        myDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        //hiển thị Dialog
+        AlertDialog alertExample = myDialog.create();
+        alertExample.show();
     }
 
-    //hiển thị list chat của item tương ứng
-    public void linkMessageList(View view) {
-        Intent info_MessageList = new Intent(getApplicationContext(), MessageList.class);
-        startActivity(info_MessageList);
+    //Hiển thị danh sách bạn bè
+    public void listFriendClick(View view) {
+        Intent listfriend_intent = new Intent(getApplicationContext(), ListFriend.class);
+        startActivity(listfriend_intent);
+        finish();
     }
-
-
 }
