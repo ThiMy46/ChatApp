@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    ProgressDialog myprogress;
+    static ProgressDialog myprogress;
     TextView moveRegister;
     private FirebaseAuth mAuth;
     EditText Email;
@@ -80,6 +80,7 @@ public class Login extends AppCompatActivity {
                         else
                         {
                             Toast.makeText (Login.this, "Lỗi", Toast.LENGTH_SHORT).show ();
+                            myprogress.dismiss();
                         }
 
                     }

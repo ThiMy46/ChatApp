@@ -63,8 +63,6 @@ public class MessageList extends AppCompatActivity {
         //btnSend=(Button)findViewById(R.id.button_chatbox_send);
         tvNameHearder.setText(intent.getStringExtra("UserName"));
 
-        // If the size of views will not change as the data changes.
-        mRecyclerView.setHasFixedSize(true);
         // Setting the LayoutManager.
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -74,6 +72,7 @@ public class MessageList extends AppCompatActivity {
 
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        layoutManager.scrollToPosition(adapter.getItemCount());
 
         //Lấy Data từ firebase và bắt các thay đổi dữ liệu của data
         getMessageFromFirebaseUser();
@@ -83,6 +82,7 @@ public class MessageList extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
+    //Button Back Header
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(intent.getStringExtra("class").equals("list"))
@@ -98,11 +98,12 @@ public class MessageList extends AppCompatActivity {
         finish();
         return super.onOptionsItemSelected(null);
     }
-    /*onClick of button Send*/
+
+    /*onClick of button SEND*/
     public void AdđItem(View view) {
         long time=new Date().getTime();
         // get data.
-        Message messageToAdd = new Message(AuthID,editMessage.getText().toString(),time);///////////////sửa lại tên người gửi
+        Message messageToAdd = new Message(AuthID,editMessage.getText().toString(),time,"text");///////////////sửa lại tên người gửi
         Chats chat=new Chats(editMessage.getText().toString(),time);
 
         // Read the input field and push a new instance
@@ -131,6 +132,9 @@ public class MessageList extends AppCompatActivity {
                             editMessage.setText("");
                         //}
                         adapter.notifyDataSetChanged();
+                        //cuộn List tới tin nhắn mới thêm vào
+                        adapter.notifyItemChanged(adapter.getItemCount()-1);
+                        mRecyclerView.scrollToPosition(adapter.getItemCount()-1);
                     }
 
                     @Override
@@ -154,4 +158,17 @@ public class MessageList extends AppCompatActivity {
                     }
                 });
     }
+
+    public void onRecordButton(View view){
+        Intent photo_intent=new Intent(MessageList.this,Audio.class);
+        photo_intent.putExtra("GroupID",groupchats);
+        startActivity(photo_intent);
+    }
+
+    public void onPhotoButton(View view){
+        Intent photo_intent=new Intent(MessageList.this,Photo.class);
+        photo_intent.putExtra("GroupID",groupchats);
+        startActivity(photo_intent);
+    }
+
 }

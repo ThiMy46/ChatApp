@@ -68,7 +68,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button5">
+        app:layout_constraintStart_toEndOf="@+id/btnPhoto">
 
         <EditText
             android:id="@+id/edittext_chatbox"
@@ -88,34 +88,33 @@
             android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:background="@android:drawable/ic_menu_send"
-            android:backgroundTint="@android:color/holo_blue_light"
+            android:backgroundTint="@android:color/holo_blue_dark"
             android:gravity="center"
-            android:onClick="AdđItem"/>
+            android:onClick="AdđItem" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRecord"
         android:layout_width="32dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@android:drawable/ic_btn_speak_now"
         app:layout_constraintBottom_toBottomOf="@+id/layout_chatbox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        android:onClick="onRecordButton"/>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnPhoto"
         android:layout_width="34dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="30dp"
         android:background="@android:drawable/ic_menu_camera"
+        android:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="@+id/layout_chatbox"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintStart_toEndOf="@+id/btnRecord"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        android:onClick="onPhotoButton"/>
     <!--END 3-->
 
 </android.support.constraint.ConstraintLayout>

@@ -85,6 +85,7 @@ public class ListFriend extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
+    // Button Back
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         Intent intent=new Intent(ListFriend.this,MainActivity.class);
@@ -108,6 +109,7 @@ public class ListFriend extends AppCompatActivity {
                             if(dspcon.getKey().equals(AuthID))
                             {
                                 flag=1;
+                                Log.d("BB","Auth: "+dspcon.getValue(Boolean.class)+"");
                             }
                         }
                         if(flag==1) {
@@ -117,6 +119,7 @@ public class ListFriend extends AppCompatActivity {
                                     listFriend.add(dspcon.getKey());
                                     //Log.d("KEYCON",dsp.getKey());//////////groupID
                                     mapUserGroup.put(i++,dsp.getKey());
+                                    Log.d("BB2","friend: "+dspcon.getValue(Boolean.class)+"");
                                 }
                             }
                         }

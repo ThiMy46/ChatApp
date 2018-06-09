@@ -18,10 +18,13 @@
         android:background="@drawable/rounded_rectangle_blue"
         android:maxWidth="250dp"
         android:padding="8dp"
-        android:text="hi man, how are you?"
+        android:text=" "
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
 
     <!--time message sended-->
     <TextView
@@ -30,8 +33,69 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:text="11:40,02/04/2018"
-        android:textSize="10sp"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_message"
         app:layout_constraintEnd_toStartOf="@+id/text_message" />
+
+    <!--LOAD IMAGE-->
+    <!--time message sended-->
+    <TextView
+        android:id="@+id/img_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSend"
+        app:layout_constraintEnd_toStartOf="@+id/imgSend"
+        app:layout_constraintTop_toTopOf="@+id/imgSend" />
+    <!--content message-->
+    <ImageView
+        android:id="@+id/imgSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:maxWidth="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <!--LOAD AUDIO-->
+    <SeekBar
+        android:id="@+id/audioSeekBar"
+        android:layout_width="157dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/audioSeekBar"
+        app:layout_constraintEnd_toStartOf="@+id/audioSeekBar"
+        app:layout_constraintTop_toTopOf="@+id/audioSeekBar"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <TextView
+        android:id="@+id/audio_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="audiotime"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay" />
 
 </android.support.constraint.ConstraintLayout>

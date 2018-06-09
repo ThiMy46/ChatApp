@@ -3,6 +3,7 @@ package com.appchat;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -58,7 +59,7 @@ public class InfoUserSearch extends AppCompatActivity {
             public void onClick(View v) {
                 //thêm group vào members
                 AddGroup(AuthID, IDUser);
-                Toast.makeText(InfoUserSearch.this, "Đã Kết Bạn với "+tvName.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(InfoUserSearch.this, "Đã gửi lời kết bạn với "+tvName.getText(), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -73,10 +74,10 @@ public class InfoUserSearch extends AppCompatActivity {
         return super.onOptionsItemSelected(null);
     }
 
-    public void AddGroup(String ID1,String ID2){
+    public void AddGroup(String ID1Auth,String ID2){
         Map<String,Boolean> map=new HashMap<>();
-        map.put(ID1,true);
-        map.put(ID2,true);
+        map.put(ID1Auth,true);
+        map.put(ID2,false);
         FirebaseDatabase.getInstance().getReference().child("members/")
                 .push()
                 .setValue(map);
@@ -93,6 +94,7 @@ public class InfoUserSearch extends AppCompatActivity {
                         if(dspcon.getKey().equals(AuthID))
                         {
                             flag=1;
+                            Log.d("BB","Auth: "+dspcon.getValue(Boolean.class)+"");
                         }
                     }
                     if(flag==1) {
@@ -100,6 +102,7 @@ public class InfoUserSearch extends AppCompatActivity {
                             if (dspcon.getKey().equals(IDUser)) {
                                 btnKetBan.setText("Bạn Bè");
                                 btnKetBan.setEnabled(false);
+                                Log.d("BB2","friend: "+dspcon.getValue(Boolean.class)+"");
                             }
                         }
                     }

@@ -3,6 +3,7 @@
     package="com.appchat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
@@ -41,7 +42,9 @@
             android:label="@string/password_name" />
         <activity android:name=".ListFriend" />
         <activity android:name=".SearchUser" />
-        <activity android:name=".InfoUserSearch"></activity>
+        <activity android:name=".InfoUserSearch" />
+        <activity android:name=".Photo" />
+        <activity android:name=".Audio"></activity>
     </application>
 
 </manifest>
