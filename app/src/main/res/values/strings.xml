@@ -36,6 +36,7 @@
     <!--Sing Up-->
     <string name="move_login">Bạn đã có tài khoản? Đăng nhập tại đây</string>
     <string name="move_register">Bạn chưa có tài khoản? Đăng ký tại đây</string>
+    <string name="move_resetPass">Bạn quên mật khẩu? Reset pass tại đây</string>
     <string name="menu_item_list_friend">Danh sách bạn bè</string>
 
     <!--Record-->

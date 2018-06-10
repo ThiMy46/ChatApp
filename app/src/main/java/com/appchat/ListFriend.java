@@ -106,7 +106,7 @@ public class ListFriend extends AppCompatActivity {
                     for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                         int flag=0;
                         for (DataSnapshot dspcon : dsp.getChildren()) {
-                            if(dspcon.getKey().equals(AuthID))
+                            if(dspcon.getKey().equals(AuthID) && dspcon.getValue(Boolean.class))
                             {
                                 flag=1;
                                 Log.d("BB","Auth: "+dspcon.getValue(Boolean.class)+"");
@@ -114,7 +114,7 @@ public class ListFriend extends AppCompatActivity {
                         }
                         if(flag==1) {
                             for (DataSnapshot dspcon : dsp.getChildren()) {
-                                if (!dspcon.getKey().equals(AuthID)) {
+                                if (!dspcon.getKey().equals(AuthID) && dspcon.getValue(Boolean.class)) {
                                     //Log.d("KEYBAN", dspcon.getKey());//////////ID BAN
                                     listFriend.add(dspcon.getKey());
                                     //Log.d("KEYCON",dsp.getKey());//////////groupID

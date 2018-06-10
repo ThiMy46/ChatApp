@@ -106,6 +106,7 @@ public class Register extends AppCompatActivity{
                             Toast.makeText (Register.this, "Đăng ký thành công! \nMời bạn đăng nhập lại", Toast.LENGTH_SHORT).show ();
                             Intent intent=new Intent(Register.this,Login.class);
                             startActivity(intent);
+                            finish();
                         }else
                             Toast.makeText (Register.this, "Lỗi!", Toast.LENGTH_SHORT).show ();
 

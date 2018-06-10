@@ -28,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 public class UpdateInfoAccount extends AppCompatActivity {
@@ -44,6 +45,10 @@ public class UpdateInfoAccount extends AppCompatActivity {
     //Firebase Storage
     FirebaseAuth mAuth;
     UserInformation userInfo;
+    //constant to track image chooser intent
+    private static final int PICK_IMAGE_REQUEST = 234;
+    //uri to store file
+    private Uri filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,7 @@ public class UpdateInfoAccount extends AppCompatActivity {
         Name.setText(userInfo.getName());
         Sdt.setText(edit_intent.getStringExtra("sdt"));
         String Sex=userInfo.getSex();
-        if ( Sex == "Nam")
+        if ( Sex != "Nam")
             rNam.setChecked (true);
         else
             rNu.setChecked (true);
@@ -85,8 +90,12 @@ public class UpdateInfoAccount extends AppCompatActivity {
         btnAvatar.setOnClickListener (new View.OnClickListener (){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult (intent,REQUEST);
+//                Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult (intent,REQUEST);
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });//end Button Avatar click
 
@@ -110,16 +119,29 @@ public class UpdateInfoAccount extends AppCompatActivity {
         return super.onOptionsItemSelected(null);
     }
     //Chụp hình = máy ảnh của máy
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == REQUEST && resultCode == RESULT_OK && data != null )
-        {
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            avatar.setImageBitmap(bitmap);
-        }
-        super.onActivityResult (requestCode, resultCode, data);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        if(requestCode == REQUEST && resultCode == RESULT_OK && data != null )
+//        {
+//            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+//            avatar.setImageBitmap(bitmap);
+//        }
+//        super.onActivityResult (requestCode, resultCode, data);
+//    }
     //end chụp hình
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                avatar.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     void setAvatar(){
         Calendar calendar=Calendar.getInstance();

@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
 
     static ProgressDialog myprogress;
     TextView moveRegister;
+    TextView resetPass;
     private FirebaseAuth mAuth;
     EditText Email;
     EditText Password;
@@ -53,7 +54,21 @@ public class Login extends AppCompatActivity {
         moveRegister.setText(spannableString, TextView.BufferType.SPANNABLE);
         moveRegister.setMovementMethod(LinkMovementMethod.getInstance());
 
+        //link đến ResetPass từ link TextView
+        resetPass=(TextView)findViewById(R.id.link_resetpass);
+        SpannableString spannablePass = new SpannableString(getString(R.string.move_resetPass));
+        ClickableSpan clickableSpanPass = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity((new Intent(getApplicationContext(), ResetPass.class)).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        };
+        spannablePass.setSpan(clickableSpanPass, spannablePass.length() - 18,
+                spannablePass.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        resetPass.setText(spannablePass, TextView.BufferType.SPANNABLE);
+        resetPass.setMovementMethod(LinkMovementMethod.getInstance());
         //END
+
     }
 
     //Login vào trang chủ

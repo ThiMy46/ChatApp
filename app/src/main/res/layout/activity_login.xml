@@ -56,5 +56,13 @@
         android:gravity="center"
         android:textSize="16dip">
     </TextView>
+    <TextView android:id="@+id/link_resetpass"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Bạn quên mật khẩu? Reset pass tại đây"
+        android:gravity="center"
+        android:textSize="16dip">
+    </TextView>
 
 </LinearLayout>

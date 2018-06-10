@@ -1,6 +1,7 @@
 package com.appchat;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,13 +20,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InfoUserSearch extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    public Button btnKetBan;
+    private Button btnKetBan;
+    private String userGroup;
+    int friend=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +63,23 @@ public class InfoUserSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //thêm group vào members
-                AddGroup(AuthID, IDUser);
-                Toast.makeText(InfoUserSearch.this, "Đã gửi lời kết bạn với "+tvName.getText(), Toast.LENGTH_SHORT).show();
-                finish();
+                if(friend==0) {//gui ket ban
+                    AddGroup(AuthID, IDUser);
+                    Toast.makeText(InfoUserSearch.this, "Đã gửi lời kết bạn với " + tvName.getText(), Toast.LENGTH_SHORT).show();
+                    btnKetBan.setText("Đã gửi kết bạn");
+                    friend=1;
+                }
+                else if(friend==1){//huy kết bạn
+                    CancelGroup(AuthID,IDUser);
+                    btnKetBan.setText("kết bạn");
+                    friend=0;
+                    Toast.makeText(InfoUserSearch.this, "Đã hủy lời kết bạn với " + tvName.getText(), Toast.LENGTH_SHORT).show();
+                }
+                else if(friend==2){//chấp nhận kết bạn
+                    AcceptInvite(AuthID,IDUser);
+                    btnKetBan.setText("Bạn Bè");
+                    btnKetBan.setEnabled(false);
+                }
             }
         });
         //add button Back
@@ -68,6 +87,12 @@ public class InfoUserSearch extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
+
+    private void AcceptInvite(String authID, String idUser) {
+        FirebaseDatabase.getInstance().getReference().child("members/"+userGroup).child(authID)
+                .setValue(true);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         finish();
@@ -78,9 +103,13 @@ public class InfoUserSearch extends AppCompatActivity {
         Map<String,Boolean> map=new HashMap<>();
         map.put(ID1Auth,true);
         map.put(ID2,false);
-        FirebaseDatabase.getInstance().getReference().child("members/")
-                .push()
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        userGroup = databaseReference.child("members").push().getKey();
+        FirebaseDatabase.getInstance().getReference().child("members/"+userGroup)
                 .setValue(map);
+    }
+    public void CancelGroup(String AuthID, String IDUser){
+        FirebaseDatabase.getInstance().getReference().child("members/").child(userGroup).removeValue();
     }
     public void TestFriended(final String AuthID, final String IDUser){
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -90,20 +119,41 @@ public class InfoUserSearch extends AppCompatActivity {
                 // Result will be holded Here
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     int flag=0;
+                    //kiểm tra key có chứa AuthID ko
                     for (DataSnapshot dspcon : dsp.getChildren()) {
-                        if(dspcon.getKey().equals(AuthID))
+                        if(dspcon.getKey().equals(AuthID) && dspcon.getValue(Boolean.class))
                         {
                             flag=1;
-                            Log.d("BB","Auth: "+dspcon.getValue(Boolean.class)+"");
+                        }
+                        else if(dspcon.getKey().equals(AuthID) && !dspcon.getValue(Boolean.class))
+                        {
+                            flag=2;
                         }
                     }
                     if(flag==1) {
                         for (DataSnapshot dspcon : dsp.getChildren()) {
-                            if (dspcon.getKey().equals(IDUser)) {
+                            if (dspcon.getKey().equals(IDUser)&& dspcon.getValue(Boolean.class)) {
                                 btnKetBan.setText("Bạn Bè");
                                 btnKetBan.setEnabled(false);
-                                Log.d("BB2","friend: "+dspcon.getValue(Boolean.class)+"");
                             }
+                            else if(dspcon.getKey().equals(IDUser)&& !dspcon.getValue(Boolean.class))
+                            {
+                                btnKetBan.setEnabled(true);
+                                friend=1;
+                                btnKetBan.setText("Đã gửi kết bạn");
+                                userGroup=dsp.getKey();
+                                //Toast.makeText(InfoUserSearch.this, userGroup, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }else if(flag==2){
+                        for (DataSnapshot dspcon : dsp.getChildren()) {
+                            if (dspcon.getKey().equals(IDUser)&& dspcon.getValue(Boolean.class)) {
+                                btnKetBan.setEnabled(true);
+                                friend = 2;
+                                btnKetBan.setText("Chấp nhận kết bạn");
+                                userGroup=dsp.getKey();
+                            }
+
                         }
                     }
                 }

@@ -337,4 +337,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(listfriend_intent);
         finish();
     }
+
+    //sang trang đổi pass
+    public void ChangePassClick(View view) {
+        Intent changepass_intent = new Intent(getApplicationContext(), ChangePassword.class);
+        startActivity(changepass_intent);
+    }
 }

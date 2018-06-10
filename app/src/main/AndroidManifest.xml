@@ -44,7 +44,8 @@
         <activity android:name=".SearchUser" />
         <activity android:name=".InfoUserSearch" />
         <activity android:name=".Photo" />
-        <activity android:name=".Audio"></activity>
+        <activity android:name=".Audio" />
+        <activity android:name=".ResetPass"></activity>
     </application>
 
 </manifest>
