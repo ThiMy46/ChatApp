@@ -20,3 +20,9 @@ chưa hiển thị tên friend của group chat tươn ứng
 Ngày 07/06/2018 hoàn thành basic các chức năng(đăng nhập, đăng xuất, thông tin cá nhân(xem, chỉnh sửa)
 , chat với một người(thêm người đó vào danh sách<fix chức năng này mới được, sao lại muốn kết bạn là kết bạn>))
 
+Ngày 08/06/2018 hoàn thành gửi image và audio trong chat
+
+Ngày 09/06/2018 sửa lại upload avatar từ storage của máy, thêm change password, resetpass, sửa lại chức năng kết bạn
+
+Đã hoàn thành các chức năng cần thiết
+
