@@ -1,6 +1,7 @@
 package com.appchat;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -288,9 +289,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.about:
+                About();
                 Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.help:
+                Help();
                 Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
                 return true;
         }
@@ -342,5 +345,47 @@ public class MainActivity extends AppCompatActivity {
     public void ChangePassClick(View view) {
         Intent changepass_intent = new Intent(getApplicationContext(), ChangePassword.class);
         startActivity(changepass_intent);
+    }
+
+    //Hiển thị thông tin about and help
+    public void About()
+    {
+        AlertDialog.Builder aboutDialog = new AlertDialog.Builder(this);
+        aboutDialog.setTitle("ABOUT");
+        aboutDialog.setMessage("\tĐỒ ÁN MÔN LẬP TRÌNH DI ĐỘNG\n\n" +
+                "Tên đề tài: Xây dựng ứng dụng chat\n" +
+                "Thành viên thực hiện:\n" +
+                "\t1. Đào Thị Mỹ-15110252\n" +
+                "\t2. Phạm Lương Mỹ-15110253\n\n" +
+                "Version1-Finish:10/06/2018\n\n" +
+                "Chi tiết xem thêm tại link: 'https://docs.google.com/document/d/1qFlfaKQibKrJIZCtvgL5fcXFaLQaE88LENf7Z4RRLRM/edit'"
+                );
+        aboutDialog.setPositiveButton("Cancel",new DialogInterface.OnClickListener(){   //setPositiveButton, nút hiển thị vị trí đầu bên trái
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                dialog.cancel(); // đóng Dialog, Activity tiếp tục hoạt động
+            }
+        });
+        //hiển thị Dialog
+        AlertDialog alert = aboutDialog.create();
+        alert.show();
+    }
+    //Hiển thị Help
+    public void Help(){
+        AlertDialog.Builder aboutDialog = new AlertDialog.Builder(this);
+        aboutDialog.setTitle("HELP");
+        aboutDialog.setMessage("\tAPP CHAT tương tự như ZALO CHAT\n\n" +
+                "cần giúp đỡ hãy liên hệ theo địa chỉ mail:\n" +
+                "daothimy46@gmail.com"
+        );
+        aboutDialog.setPositiveButton("Cancel",new DialogInterface.OnClickListener(){   //setPositiveButton, nút hiển thị vị trí đầu bên trái
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                dialog.cancel(); // đóng Dialog, Activity tiếp tục hoạt động
+            }
+        });
+        //hiển thị Dialog
+        AlertDialog alert = aboutDialog.create();
+        alert.show();
     }
 }
